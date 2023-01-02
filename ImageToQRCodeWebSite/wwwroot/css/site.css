@@ -1,0 +1,75 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  /*background-color: #1b1b1b;*/
+}
+#patternDiv {
+    position: relative;
+}
+#patternDivCode {
+    overflow: auto;
+    height: 150px;
+    padding: 20px;
+    box-shadow: 20px 2px 20px #00000078;
+}
+#patternDivButton{
+    right: 15px;
+    top: 0;
+    position: absolute;
+}
+#patternDivButton svg{
+    padding: 2px;
+}
+#patternDivButton:hover {
+    background-color: #d0d0d0;
+    border-radius: 5px;
+}
+#patternDiv code{
+    color: black;
+}
+#QRImg img{
+    width: 40%;
+}
+#symbolsCount {
+    margin: 10px;
+}
+#sourceImg {
+    margin: 10px;
+}
+#inputField {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    position: absolute;
+}
+.text-center label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+#dropZone{
+    background: rgba(102,74,0,.8);
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    padding-top: 45vh;
+    position: fixed;
+    right: 0;
+    text-align: center;
+    top: 0;
+    z-index: 6000;
+    display:none;
+}

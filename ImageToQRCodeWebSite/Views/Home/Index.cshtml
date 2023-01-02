@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form name="inputFileForm" method="post" asp-controller="ConvertedImage" asp-action="Index" enctype="multipart/form-data">
+        <label for="inputField" name="inputField">Сhoose File</label>
+        <input name="inputField" id="inputField" onchange="formChange(this);" accept=".jpg, .png, .jpeg, .gif, .bmp, .tif, .tiff|image/*" type="file" required />
+    </form>
+    <div id="dropZone" 
+        ondrop="dropElement(event);event.stopPropagation(); event.preventDefault(); " 
+        ondragover="event.stopPropagation(); event.preventDefault();"
+        ondragleave="leaveElement();">
+        <img src="https://www.remove.bg/images/corner.svg" style="left:34px; top:34px; position:absolute;">
+        <img src="https://www.remove.bg/images/corner.svg" style="right:34px; top:34px; position:absolute; transform: rotate(90deg);">
+        <img src="https://www.remove.bg/images/corner.svg" style="left:34px; bottom:34px; position:absolute; transform: rotate(270deg);">
+        <img src="https://www.remove.bg/images/corner.svg" style="right:34px; bottom:34px; position:absolute; transform: rotate(180deg);">
+    </div>
+    <script>
+        window.addEventListener("dragenter", dragElementEnter, 0);
+        function dragElementEnter(){
+            document.getElementById("dropZone").style.display="block";
+        }
+        function getFileExtension(fileName){
+            var  fileExtension;
+            fileExtension = fileName.replace(/^.*\./, '');
+            return fileExtension;
+        }
+        function isImage(fileName){
+            var fileExt = getFileExtension(fileName);
+            var imagesExtension = ["png", "jpg", "jpeg"];
+            if(imagesExtension.indexOf(fileExt) !== -1){
+                return true;
+            } 
+            else{
+                return false;
+            }
+        }
+        function dropElement(event){
+            let files=event.dataTransfer.files;
+            if (files.length == 1 && isImage(files[0].name)) {
+                document.getElementById("inputField").files = files;
+                document.forms["inputFileForm"].submit();
+            }
+            else{
+                alert("input only one image file");
+            }
+            document.getElementById("dropZone").style.display = "none";
+        }
+        function leaveElement(){
+            document.getElementById("dropZone").style.display = "none";
+        }
+        function formChange(element){
+            if (element.value!=""){
+                document.forms["inputFileForm"].submit();
+            }
+        }
+    </script>
+</div>
